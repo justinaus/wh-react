@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
+import PageLayout from '../components/layout/PageLayout';
 
 export default class About extends Component {
-  constructor(props: any) {
-    super(props);
-    console.log(111);
-  }
-
   render() {
-    const { children } = this.props;
-
     return (
-      <div>
+      <PageLayout>
         About
-        { children }
-      </div>
+      </PageLayout>
     )
   }
 }
