@@ -7,6 +7,7 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
+import { RouterPath } from './enums/RouterPath';
 
 const About = lazy(() => import('./pages/About'));
 const NoticeList = lazy(() => import('./pages/notice/NoticeList'));
@@ -16,14 +17,14 @@ const App: React.FC = () => {
     <Router>
       <Suspense fallback={<div />}>
         <Switch>
-          <Route path="/about">
+          <Route path={RouterPath.ABOUT}>
             <About />
           </Route>
-          <Route path="/notices">
+          <Route path={RouterPath.NOTICE_LIST}>
             <NoticeList />
           </Route>
-          <Route path="/">
-            <Redirect to="about" />
+          <Route path={RouterPath.HOME}>
+            <Redirect to={RouterPath.ABOUT} />
           </Route>
         </Switch>
       </Suspense>
