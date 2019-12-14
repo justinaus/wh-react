@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import Header from './header/Header'
-import Footer from './footer/Footer'
-import Content from './content/Content'
+import React, { Component } from 'react';
+import Header from './header/Header';
+import Footer from './footer/Footer';
+import Content from './content/Content';
 
 export default class PageLayout extends Component {
   render() {
@@ -11,12 +11,10 @@ export default class PageLayout extends Component {
       <div>
         <Header />
 
-        <Content>
-          { children }
-        </Content>
+        <Content>{children}</Content>
 
         <Footer />
       </div>
-    )
+    );
   }
 }
