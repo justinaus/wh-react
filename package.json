@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
   },
   "browserslist": {
     "production": [
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-prettier": "^3.1.1"
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.19.1"
   }
 }
