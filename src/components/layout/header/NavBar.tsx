@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default class NavBar extends Component {
@@ -21,6 +21,14 @@ export default class NavBar extends Component {
           <Link to="/notices" className="nav-link">
             Notice
           </Link>
+          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <Link to="/about" className="dropdown-item">
+              About
+            </Link>
+            <Link to="/notices" className="dropdown-item">
+              Notice
+            </Link>
+          </NavDropdown>
         </Nav>
       </Navbar>
     );
