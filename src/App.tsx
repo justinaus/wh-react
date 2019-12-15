@@ -10,6 +10,9 @@ import { RouterPath } from './enums/RouterPath';
 
 const About = lazy(() => import('./pages/About'));
 const NoticeList = lazy(() => import('./pages/notice/NoticeList'));
+const NoticeView = lazy(() => import('./pages/notice/NoticeView'));
+const ProductType0 = lazy(() => import('./pages/product/ProductType0'));
+const ProductType1 = lazy(() => import('./pages/product/ProductType1'));
 
 const App: React.FC = () => {
   return (
@@ -21,6 +24,15 @@ const App: React.FC = () => {
           </Route>
           <Route path={RouterPath.NoticeList}>
             <NoticeList />
+          </Route>
+          <Route path={RouterPath.NoticeView}>
+            <NoticeView />
+          </Route>
+          <Route path={RouterPath.ProductType0}>
+            <ProductType0 />
+          </Route>
+          <Route path={RouterPath.ProductType1}>
+            <ProductType1 />
           </Route>
           <Route path={RouterPath.Home}>
             <Redirect to={RouterPath.About} />

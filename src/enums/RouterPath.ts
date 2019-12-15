@@ -3,4 +3,6 @@ export enum RouterPath {
   About = '/about',
   NoticeList = '/notices',
   NoticeView = '/notice',
+  ProductType0 = '/product0',
+  ProductType1 = '/product1',
 }
