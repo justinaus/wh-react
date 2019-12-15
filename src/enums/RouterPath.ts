@@ -1,6 +1,6 @@
 export enum RouterPath {
-  HOME = '/',
-  ABOUT = '/about',
-  NOTICE_LIST = '/notices',
-  NOTICE_VIEW = '/notice',
+  Home = '/',
+  About = '/about',
+  NoticeList = '/notices',
+  NoticeView = '/notice',
 }

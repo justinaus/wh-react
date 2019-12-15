@@ -16,14 +16,14 @@ const App: React.FC = () => {
     <Router>
       <Suspense fallback={<div />}>
         <Switch>
-          <Route path={RouterPath.ABOUT}>
+          <Route path={RouterPath.About}>
             <About />
           </Route>
-          <Route path={RouterPath.NOTICE_LIST}>
+          <Route path={RouterPath.NoticeList}>
             <NoticeList />
           </Route>
-          <Route path={RouterPath.HOME}>
-            <Redirect to={RouterPath.ABOUT} />
+          <Route path={RouterPath.Home}>
+            <Redirect to={RouterPath.About} />
           </Route>
         </Switch>
       </Suspense>
