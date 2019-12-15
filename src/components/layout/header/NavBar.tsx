@@ -5,27 +5,36 @@ import { Link } from 'react-router-dom';
 import { menuData } from '../../../constants/menuData';
 import IMenuItemData from '../../../constants/IMenuItemData';
 
-export default class NavBar extends Component {
-  getDropDown = (menuItemData: IMenuItemData) => (
-    <NavDropdown
-      key={menuItemData.id}
-      title={menuItemData.text}
-      id="basic-nav-dropdown"
-    >
-      {this.getLinkElement(menuItemData.arrSub!, 'dropdown-item')}
-    </NavDropdown>
-  );
+import classnames from 'classnames';
 
-  getLinkElement = (arrMenu: Array<IMenuItemData>, className = 'nav-link') => {
+import styles from './NavBar.module.css';
+
+export default class NavBar extends Component {
+  test = (getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
     return arrMenu.map(item => {
-      if (item.arrSub) {
-        return this.getDropDown(item);
+      return (
+        <NavDropdown.Item as={Link} key={item.id} to={item.link}>
+          {item.text}
+        </NavDropdown.Item>
+      );
+    });
+  });
+
+  navItems = () => {
+    console.log(menuData);
+    return menuData.map(item => {
+      if (!item.arrSub) {
+        return (
+          <Nav.Link as={Link} key={item.id} to={item.link}>
+            {item.text}
+          </Nav.Link>
+        );
       }
 
       return (
-        <Link key={item.id} to={item.link} className={className}>
-          {item.text}
-        </Link>
+        <NavDropdown key={item.id} title={item.text} id="basic-nav-dropdown">
+          {this.getDropDownItems(item.arrSub!)}
+        </NavDropdown>
       );
     });
   };
@@ -34,7 +43,7 @@ export default class NavBar extends Component {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Nav className="mr-auto">{this.getLinkElement(menuData)}</Nav>
+        <Nav className="mr-auto">{this.navItems}</Nav>
       </Navbar>
     );
   }

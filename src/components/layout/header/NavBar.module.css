@@ -1,0 +1,7 @@
+:global(.navbar-dark > .navbar-nav > .nav-link).selected {
+  color: #007bff;
+}
+
+.selectedDropDownItem {
+  color: #007bff;
+}
