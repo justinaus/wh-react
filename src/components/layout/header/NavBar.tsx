@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink, RouteComponentProps } from 'react-router-dom';
 import { menuData } from '../../../constants/menuData';
 import IMenuItemData from '../../../constants/IMenuItemData';
 
 import classnames from 'classnames';
 
 import styles from './NavBar.module.css';
+import { MenuState } from '../../../store/menu/types';
+import { connect } from 'react-redux';
+import { AppState } from '../../../store';
 
-export default class NavBar extends Component {
+interface NavBarProps extends RouteComponentProps<any> {
+  menu: MenuState;
+}
+
+class NavBar extends Component<NavBarProps> {
+  componentDidMount() {
+    console.log('mounted');
+
+    console.log(this.props.location, this.props.history);
+  }
+
   getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
     return arrMenu.map(item => {
       return (
-        <NavDropdown.Item as={Link} key={item.id} to={item.link} className={styles.selectedDropDownItem}>
+        <NavDropdown.Item
+          as={NavLink}
+          key={item.id}
+          to={item.link}
+          className={
+            item.id === this.props.menu.selectedMenuId
+              ? styles.selectedDropDownItem
+              : undefined
+          }
+        >
           {item.text}
         </NavDropdown.Item>
       );
@@ -24,7 +46,16 @@ export default class NavBar extends Component {
     return menuData.map(item => {
       if (!item.arrSub) {
         return (
-          <Nav.Link as={Link} key={item.id} to={item.link} className={styles.selected}>
+          <Nav.Link
+            as={NavLink}
+            key={item.id}
+            to={item.link}
+            className={
+              item.id === this.props.menu.selectedMenuId
+                ? styles.selected
+                : undefined
+            }
+          >
             {item.text}
           </Nav.Link>
         );
@@ -36,7 +67,7 @@ export default class NavBar extends Component {
         </NavDropdown>
       );
     });
-  }
+  };
 
   navItems = this.getLinkItems();
 
@@ -49,3 +80,9 @@ export default class NavBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state: AppState) => ({
+  menu: state.menu,
+});
+
+export default connect(mapStateToProps)(NavBar);
