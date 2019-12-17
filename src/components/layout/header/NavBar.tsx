@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import styles from './NavBar.module.css';
 
 export default class NavBar extends Component {
-  test = (getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
+  getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
     return arrMenu.map(item => {
       return (
         <NavDropdown.Item as={Link} key={item.id} to={item.link}>
@@ -18,10 +18,9 @@ export default class NavBar extends Component {
         </NavDropdown.Item>
       );
     });
-  });
+  };
 
-  navItems = () => {
-    console.log(menuData);
+  getLinkItems = () => {
     return menuData.map(item => {
       if (!item.arrSub) {
         return (
@@ -37,7 +36,9 @@ export default class NavBar extends Component {
         </NavDropdown>
       );
     });
-  };
+  }
+
+  navItems = this.getLinkItems();
 
   render() {
     return (
