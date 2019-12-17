@@ -13,7 +13,7 @@ export default class NavBar extends Component {
   getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
     return arrMenu.map(item => {
       return (
-        <NavDropdown.Item as={Link} key={item.id} to={item.link}>
+        <NavDropdown.Item as={Link} key={item.id} to={item.link} className={styles.selectedDropDownItem}>
           {item.text}
         </NavDropdown.Item>
       );
@@ -24,7 +24,7 @@ export default class NavBar extends Component {
     return menuData.map(item => {
       if (!item.arrSub) {
         return (
-          <Nav.Link as={Link} key={item.id} to={item.link}>
+          <Nav.Link as={Link} key={item.id} to={item.link} className={styles.selected}>
             {item.text}
           </Nav.Link>
         );
