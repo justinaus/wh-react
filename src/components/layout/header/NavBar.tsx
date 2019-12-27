@@ -11,16 +11,20 @@ import styles from './NavBar.module.css';
 import { MenuState } from '../../../store/menu/types';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
+import { MenuId } from '../../../enums/MenuId';
 
-interface NavBarProps extends RouteComponentProps<any> {
+interface NavBarProps {
   menu: MenuState;
 }
 
 class NavBar extends Component<NavBarProps> {
   componentDidMount() {
-    console.log('mounted');
+    const { selectedMenuId } = this.props.menu;
 
-    console.log(this.props.location, this.props.history);
+    // open dropdown
+
+    // const isOpenDropdown = selectedMenuId === MenuId.
+    console.log(123);
   }
 
   getDropDownItems = (arrMenu: Array<IMenuItemData>) => {
