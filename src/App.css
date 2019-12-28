@@ -1,0 +1,7 @@
+#root .navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+#root .navbar-dark .navbar-nav .nav-link.selected {
+  color: #007bff;
+}

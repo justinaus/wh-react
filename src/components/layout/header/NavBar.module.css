@@ -1,7 +1,8 @@
-:global(.navbar-dark > .navbar-nav > .nav-link).selected {
+/* :global(.navbar-dark > .navbar-nav > .nav-link).selected {
   color: #007bff;
-}
+} */
 
-.selectedDropDownItem {
+/* 
+.selected {
   color: #007bff;
-}
+} */
