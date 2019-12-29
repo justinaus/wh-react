@@ -2,8 +2,8 @@ import { CHANGE_MENU, MenuState, MenuActionTypes } from './types';
 import { MenuId } from '../../enums/MenuId';
 
 const initialState: MenuState = {
-  // selectedMenuId: null,
-  selectedMenuId: MenuId.ProductType0,
+  selectedMenuId0: MenuId.Product,
+  selectedMenuId1: MenuId.ProductType1,
 };
 
 export function menuReducer(
