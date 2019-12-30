@@ -1,0 +1,21 @@
+.wrapper {
+  background-color: #fff8dc;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.item {
+  color: #343a40;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.selected {
+  color: #007bff;
+}
+
+/* :global(.navbar-dark > .navbar-nav > .nav-link).selected {
+  color: #007bff;
+} */
