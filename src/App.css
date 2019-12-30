@@ -5,3 +5,12 @@
 #root .navbar-dark .navbar-nav .nav-link.selected {
   color: #007bff;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
