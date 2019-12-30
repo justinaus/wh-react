@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 1rem 1rem;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.selected {
+  color: #87cefa;
+}
