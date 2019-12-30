@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
-
-import { Navbar, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { NavLink, RouteComponentProps } from 'react-router-dom';
 
 import { menuData } from '../../../constants/menuData';
+import IMenuItemData from '../../../constants/IMenuItemData';
 import { MenuState } from '../../../store/menu/types';
 import { AppState } from '../../../store';
 
+import NavItem from './NavItem';
 import SubMenu from './SubMenu';
+
+import styles from './NavBar.module.css';
+
+import logo from '../../../assets/logo.svg';
 
 interface IProps {
   menu: MenuState;
 }
 
 class NavBar extends Component<IProps> {
+  onMouseOverLink = (item: IMenuItemData) => {
+    if (!item.arrSub) return;
+
+    console.log(item);
+  };
+
   getNavItems = () => {
     return menuData.map(item => {
       return (
-        <Nav.Link
-          as={NavLink}
+        <NavItem
           key={item.id}
-          to={item.link}
-          className={
-            item.id === this.props.menu.selectedMenuId0 ? 'selected' : undefined
-          }
+          link={item.link}
+          text={item.text}
+          isSelected={item.id === this.props.menu.selectedMenuId0}
+          // onMouseOver={() => this.onMouseOverLink(item)}
         >
           {item.text}
-        </Nav.Link>
+        </NavItem>
       );
     });
   };
@@ -35,21 +44,23 @@ class NavBar extends Component<IProps> {
   render() {
     const navItems = this.getNavItems();
 
-    const { selectedMenuId0, selectedMenuId1 } = this.props.menu;
+    // const { selectedMenuId0, selectedMenuId1 } = this.props.menu;
 
-    const selectedMenu0Data = menuData.find(
-      item => item.id === selectedMenuId0
-    );
-    const arrSub = selectedMenu0Data ? selectedMenu0Data.arrSub : null;
+    // const selectedMenu0Data = menuData.find(
+    //   item => item.id === selectedMenuId0
+    // );
+    // const arrSub = selectedMenu0Data ? selectedMenu0Data.arrSub : null;
 
     return (
-      <>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Nav className="mr-auto">{navItems}</Nav>
-        </Navbar>
-        {arrSub && <SubMenu arrSub={arrSub} selectedId={selectedMenuId1!} />}
-      </>
+      <div className={styles.wrapper}>
+        <NavLink to="/">
+          <img src={logo} className={styles.logo} alt="logo" />
+        </NavLink>
+
+        {navItems}
+
+        {/* {arrSub && <SubMenu arrSub={arrSub} selectedId={selectedMenuId1!} />} */}
+      </div>
     );
   }
 }
