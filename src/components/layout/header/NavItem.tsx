@@ -9,11 +9,13 @@ interface IProps {
   link: string;
   text: string;
   isSelected: boolean;
+  onMouseOver: () => void;
+  onMouseOut: () => void;
 }
 
 export default class NavItem extends Component<IProps> {
   render() {
-    const { link, text, isSelected } = this.props;
+    const { link, text, isSelected, onMouseOver, onMouseOut } = this.props;
 
     const className = cx({
       wrapper: true,
@@ -21,7 +23,12 @@ export default class NavItem extends Component<IProps> {
     });
 
     return (
-      <NavLink className={className} to={link}>
+      <NavLink
+        className={className}
+        to={link}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
         {text}
       </NavLink>
     );
