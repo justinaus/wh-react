@@ -8,34 +8,48 @@ import {
 } from 'react-router-dom';
 import { RouterPath } from './enums/RouterPath';
 
-const About = lazy(() => import('./pages/About'));
-const NoticeList = lazy(() => import('./pages/notice/NoticeList'));
-const NoticeView = lazy(() => import('./pages/notice/NoticeView'));
-const ProductType0 = lazy(() => import('./pages/product/ProductType0'));
-const ProductType1 = lazy(() => import('./pages/product/ProductType1'));
+const Products = lazy(() => import('./pages/product/Products'));
+const Product = lazy(() => import('./pages/product/Product'));
+const Bids = lazy(() => import('./pages/bid/Bids'));
+const Bid = lazy(() => import('./pages/bid/Bid'));
+const ManagementUsers = lazy(() =>
+  import('./pages/management/user/ManagementUsers')
+);
+const ManagementUser = lazy(() =>
+  import('./pages/management/user/ManagementUser')
+);
+const ManagementEtc = lazy(() =>
+  import('./pages/management/etc/ManagementEtc')
+);
 
 const App: React.FC = () => {
   return (
     <Router>
       <Suspense fallback={<div />}>
         <Switch>
-          <Route path={RouterPath.About}>
-            <About />
+          <Route path={RouterPath.Products}>
+            <Products />
           </Route>
-          <Route path={RouterPath.NoticeList}>
-            <NoticeList />
+          <Route path={RouterPath.Product}>
+            <Product />
           </Route>
-          <Route path={RouterPath.NoticeView}>
-            <NoticeView />
+          <Route path={RouterPath.Bids}>
+            <Bids />
           </Route>
-          <Route path={RouterPath.ProductType0}>
-            <ProductType0 />
+          <Route path={RouterPath.Bid}>
+            <Bid />
           </Route>
-          <Route path={RouterPath.ProductType1}>
-            <ProductType1 />
+          <Route path={RouterPath.ManagementUsers}>
+            <ManagementUsers />
+          </Route>
+          <Route path={RouterPath.ManagementUser}>
+            <ManagementUser />
+          </Route>
+          <Route path={RouterPath.ManagementEtc}>
+            <ManagementEtc />
           </Route>
           <Route path={RouterPath.Home}>
-            <Redirect to={RouterPath.About} />
+            <Redirect to={RouterPath.Products} />
           </Route>
         </Switch>
       </Suspense>

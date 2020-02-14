@@ -1,8 +1,14 @@
 export enum RouterPath {
   Home = '/',
-  About = '/about',
-  NoticeList = '/notices',
-  NoticeView = '/notice',
-  ProductType0 = '/product0',
-  ProductType1 = '/product1',
+
+  Products = '/products',
+  Product = '/product',
+
+  Bids = '/bids',
+  Bid = '/bid',
+
+  ManagementUsers = '/users',
+  ManagementUser = '/user',
+
+  ManagementEtc = '/etc',
 }

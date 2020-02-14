@@ -1,7 +1,9 @@
 export enum MenuId {
-  About = 'about',
-  Notice = 'notice',
   Product = 'product',
-  ProductType0 = 'productType0',
-  ProductType1 = 'productType1',
+  Bid = 'bid',
+
+  Management = 'management',
+
+  ManagementUser = 'managementUser',
+  ManagementEtc = 'managementEtc',
 }

@@ -4,29 +4,29 @@ import IMenuItemData from './IMenuItemData';
 
 const menuData: Array<IMenuItemData> = [
   {
-    id: MenuId.About,
-    text: 'About',
-    link: RouterPath.About,
-  },
-  {
-    id: MenuId.Notice,
-    text: 'Notice',
-    link: RouterPath.NoticeList,
-  },
-  {
     id: MenuId.Product,
     text: 'Product',
-    link: RouterPath.ProductType0,
+    link: RouterPath.Products,
+  },
+  {
+    id: MenuId.Bid,
+    text: 'Bid',
+    link: RouterPath.Bids,
+  },
+  {
+    id: MenuId.Management,
+    text: 'Management',
+    link: RouterPath.ManagementUsers,
     arrSub: [
       {
-        id: MenuId.ProductType0,
-        text: 'Type0',
-        link: RouterPath.ProductType0,
+        id: MenuId.ManagementUser,
+        text: 'Management User',
+        link: RouterPath.ManagementUsers,
       },
       {
-        id: MenuId.ProductType1,
-        text: 'Type1',
-        link: RouterPath.ProductType1,
+        id: MenuId.ManagementEtc,
+        text: 'Management Etc',
+        link: RouterPath.ManagementEtc,
       },
     ],
   },
