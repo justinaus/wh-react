@@ -1,12 +1,12 @@
-.wrapper {
-  padding: 1rem 1rem;
-  color: #ffffff;
-}
-
-a {
+.a {
+  color: inherit;
   text-decoration: none;
 }
 
 .selected {
   color: #87cefa;
+}
+
+.ul {
+  padding-left: 20px;
 }

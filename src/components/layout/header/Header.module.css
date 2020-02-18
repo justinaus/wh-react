@@ -1,9 +1,0 @@
-.wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  background-color: #333333;
-  height: 60px;
-  display: flex;
-  align-items: center;
-}
