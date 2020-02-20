@@ -13,15 +13,7 @@ const Products = lazy(() => import('./pages/product/Products'));
 const Product = lazy(() => import('./pages/product/Product'));
 const Bids = lazy(() => import('./pages/bid/Bids'));
 const Bid = lazy(() => import('./pages/bid/Bid'));
-const ManagementUsers = lazy(() =>
-  import('./pages/management/user/ManagementUsers')
-);
-const ManagementUser = lazy(() =>
-  import('./pages/management/user/ManagementUser')
-);
-const ManagementEtc = lazy(() =>
-  import('./pages/management/etc/ManagementEtc')
-);
+const Management = lazy(() => import('./pages/management/Management'));
 
 const App: React.FC = () => {
   return (
@@ -45,33 +37,9 @@ const App: React.FC = () => {
             render={props => <Bid {...props} menuId={MenuId.Bid} />}
           />
           <Route
-            path={RouterPath.ManagementUsers}
+            path={RouterPath.Management}
             render={props => (
-              <ManagementUsers
-                {...props}
-                menuId={MenuId.Management}
-                subMenuId={MenuId.ManagementUser}
-              />
-            )}
-          />
-          <Route
-            path={`${RouterPath.ManagementUser}/:id`}
-            render={props => (
-              <ManagementUser
-                {...props}
-                menuId={MenuId.Management}
-                subMenuId={MenuId.ManagementUser}
-              />
-            )}
-          />
-          <Route
-            path={RouterPath.ManagementEtc}
-            render={props => (
-              <ManagementEtc
-                {...props}
-                menuId={MenuId.Management}
-                subMenuId={MenuId.ManagementEtc}
-              />
+              <Management {...props} menuId={MenuId.Management} />
             )}
           />
           <Route path={RouterPath.Home}>

@@ -7,8 +7,10 @@ export enum RouterPath {
   Bids = '/bids',
   Bid = '/bid',
 
-  ManagementUsers = '/users',
-  ManagementUser = '/user',
+  Management = '/management',
 
-  ManagementEtc = '/etc',
+  ManagementUsers = '/management/users',
+  ManagementUser = '/management/user',
+
+  ManagementEtc = '/management/etc',
 }
