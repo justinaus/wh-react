@@ -7,3 +7,5 @@ export enum MenuId {
   ManagementUser = 'managementUser',
   ManagementEtc = 'managementEtc',
 }
+
+// export type MenuIdOrNull = MenuId | null;

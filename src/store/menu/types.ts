@@ -1,8 +1,8 @@
 import { MenuId } from '../../enums/MenuId';
 
 export interface MenuState {
-  selectedMenuId0: MenuId | null;
-  selectedMenuId1: MenuId | null;
+  menuId: MenuId | null;
+  subMenuId: MenuId | null;
 }
 
 export const CHANGE_MENU = 'CHANGE_MENU';

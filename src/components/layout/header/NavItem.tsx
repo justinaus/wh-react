@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './NavItem.module.css';
 import classNames from 'classnames/bind';
-import IMenuItemData from '../../../constants/IMenuItemData';
+import IMenuItemData from '../../../interfaces/IMenuItemData';
 import { MenuId } from '../../../enums/MenuId';
 
 const cx = classNames.bind(styles);

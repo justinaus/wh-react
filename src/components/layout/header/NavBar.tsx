@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { menuData } from '../../../constants/menuData';
-import { MenuState } from '../../../store/menu/types';
-import { AppState } from '../../../store';
 import NavItem from './NavItem';
+import { IHasMenu } from '../../../interfaces/IHasMenu';
 
-interface IProps {
-  menu: MenuState;
-}
-
-class NavBar extends Component<IProps> {
+export default class NavBar extends Component<IHasMenu> {
   getNavItems = () => {
-    const { selectedMenuId0, selectedMenuId1 } = this.props.menu;
+    const { menuId, subMenuId } = this.props;
 
     return menuData.map(item => {
       return (
         <NavItem
           key={item.id}
           itemData={item}
-          isSelected={item.id === selectedMenuId0}
-          subSelectedId={selectedMenuId1}
+          isSelected={item.id === menuId}
+          subSelectedId={subMenuId}
         >
           {item.text}
         </NavItem>
@@ -33,8 +27,3 @@ class NavBar extends Component<IProps> {
     return <ul>{navItems}</ul>;
   }
 }
-
-const mapStateToProps = (state: AppState) => ({
-  menu: state.menu,
-});
-export default connect(mapStateToProps)(NavBar);

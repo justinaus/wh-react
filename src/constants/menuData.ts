@@ -1,6 +1,6 @@
 import { MenuId } from '../enums/MenuId';
 import { RouterPath } from '../enums/RouterPath';
-import IMenuItemData from './IMenuItemData';
+import IMenuItemData from '../interfaces/IMenuItemData';
 
 const menuData: Array<IMenuItemData> = [
   {
