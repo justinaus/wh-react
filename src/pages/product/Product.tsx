@@ -4,6 +4,12 @@ import { IPage } from '../../interfaces/IPage';
 
 export default class Product extends Component<IPage> {
   render() {
-    return <PageLayout {...this.props}>Product</PageLayout>;
+    const params: any = this.props.match.params;
+
+    return (
+      <PageLayout {...this.props}>
+        <div>Product {params.id || ''}</div>
+      </PageLayout>
+    );
   }
 }
