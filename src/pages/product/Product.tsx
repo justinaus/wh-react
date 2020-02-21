@@ -4,6 +4,7 @@ import { IPage } from '../../interfaces/IPage';
 import { ApiPath } from '../../enums/ApiPath';
 import http from '../../services/http';
 import ITodoModel from '../../interfaces/ITodoModel';
+import logo from '../../assets/logo.svg';
 
 interface IState {
   model: ITodoModel | null;
@@ -55,6 +56,8 @@ export default class Product extends Component<IPage, IState> {
               <div>completed: {String(model.completed)}</div>
             </div>
           )}
+          <img src={'/logo192.png'} />
+          <img src={logo} />
         </div>
       </PageLayout>
     );
