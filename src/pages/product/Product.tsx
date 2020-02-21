@@ -5,9 +5,12 @@ import { ApiPath } from '../../enums/ApiPath';
 import http from '../../services/http';
 import ITodoModel from '../../interfaces/ITodoModel';
 import logo from '../../assets/logo.svg';
+import Input from '../../components/common/input/Input';
 
 interface IState {
   model: ITodoModel | null;
+
+  strTest: string;
 }
 
 export default class Product extends Component<IPage, IState> {
@@ -16,7 +19,7 @@ export default class Product extends Component<IPage, IState> {
   constructor(props: IPage) {
     super(props);
 
-    this.state = { model: null };
+    this.state = { model: null, strTest: 'start' };
 
     const params: any = this.props.match.params;
 
@@ -41,8 +44,26 @@ export default class Product extends Component<IPage, IState> {
       });
   };
 
+  onChangeInputTest = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ strTest: e.currentTarget.value });
+  };
+
+  onChangeInputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // assign
+    // const model = Object.assign(  );
+    // const model: ITodoModel = {
+    //   ...this.state.model,
+    // };
+    // console.log(model);
+    // return {
+    //   ...state,
+    //   ...action.payload,
+    // };
+    // this.setState({ model: e.currentTarget.value });
+  };
+
   render() {
-    const { model } = this.state;
+    const { model, strTest } = this.state;
 
     return (
       <PageLayout {...this.props}>
@@ -52,7 +73,15 @@ export default class Product extends Component<IPage, IState> {
             <div>
               <div>userId: {model.userId}</div>
               <div>id: {model.id}</div>
-              <div>title: {model.title}</div>
+              <Input value={strTest} handleChange={this.onChangeInputTest} />
+
+              <div>
+                title:{' '}
+                <Input
+                  value={model.title}
+                  handleChange={this.onChangeInputTitle}
+                />
+              </div>
               <div>completed: {String(model.completed)}</div>
             </div>
           )}
