@@ -40,7 +40,11 @@ class PageLayout extends Component<IProps> {
           subMenuId={menuState.subMenuId || null}
         />
 
+        <hr />
+
         <Content>{children}</Content>
+
+        <hr />
 
         <Footer />
       </div>
