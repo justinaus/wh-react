@@ -6,7 +6,7 @@ export default class Progressbar extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <img src={indicator} />
+        <img src={indicator} alt="Progressbar" />
       </div>
     );
   }

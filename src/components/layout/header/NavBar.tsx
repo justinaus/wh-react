@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { menuData } from '../../../constants/menuData';
 import NavItem from './NavItem';
 import { IHasMenu } from '../../../interfaces/IHasMenu';
 
-export default class NavBar extends Component<IHasMenu> {
-  getNavItems = () => {
-    const { menuId, subMenuId } = this.props;
+type Props = IHasMenu;
 
+// type PropsFromRedux = ConnectedProps<typeof connector>
+
+// type Props = PropsFromRedux & {
+//   backgroundColor: string
+// }
+
+const NavBar = ({ menuId, subMenuId }: Props) => {
+  const getNavItems = () => {
     return menuData.map(item => {
       return (
         <NavItem
@@ -21,9 +27,9 @@ export default class NavBar extends Component<IHasMenu> {
     });
   };
 
-  render() {
-    const navItems = this.getNavItems();
+  const navItems = getNavItems();
 
-    return <ul>{navItems}</ul>;
-  }
-}
+  return <ul>{navItems}</ul>;
+};
+
+export default NavBar;

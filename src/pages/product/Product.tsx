@@ -1,92 +1,73 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageLayout from '../../components/layout/PageLayout';
-import { IPage } from '../../interfaces/IPage';
+import { IPageProps } from '../../interfaces/IPageProps';
 import { ApiPath } from '../../enums/ApiPath';
 import http from '../../services/http';
 import ITodoModel from '../../interfaces/ITodoModel';
-import logo from '../../assets/logo.svg';
 import Input from '../../components/common/input/Input';
+import { MenuId } from '../../enums/MenuId';
 
-interface IState {
-  model: ITodoModel | null;
-  strTest: string;
-}
+const Product = (props: IPageProps) => {
+  const [itemData, setData] = useState<ITodoModel | null>(null);
 
-export default class Product extends Component<IPage, IState> {
-  private itemId: string | null = null;
+  const [strMyName, setMyName] = useState<string>('');
 
-  constructor(props: IPage) {
-    super(props);
+  const params: any = props.match.params;
+  const itemId = params.id || null;
 
-    this.state = { model: null, strTest: '' };
+  useEffect(() => {
+    if (!itemId) return;
 
-    const params: any = this.props.match.params;
+    getData(itemId);
+  }, [itemId]);
 
-    this.itemId = params.id || null;
-    if (!this.itemId) return;
-
-    this.getData(this.itemId);
-  }
-
-  getData = async (itemId: string) => {
+  const getData = (itemId: string) => {
     const path = `${ApiPath.Products}/${itemId}`;
 
     http
       .get(path)
       .then(response => {
         const result: ITodoModel = response.data;
-
-        this.setState({ model: result });
+        setData(result);
       })
       .catch(error => {
         console.log('error', error);
       });
   };
 
-  onChangeInputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { model } = this.state;
-    if (!model) return;
+  const onChangeInputTitle = (value: string) => {
+    if (!itemData) {
+      return;
+    }
 
-    model.title = e.currentTarget.value;
-
-    this.setState({ model: model });
+    setData({ ...itemData, title: value });
   };
 
-  onChangeInputTest = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ strTest: e.currentTarget.value });
-  };
-
-  render() {
-    const { model, strTest } = this.state;
-
-    return (
-      <PageLayout {...this.props}>
+  return (
+    <PageLayout {...props} menuId={MenuId.Product}>
+      <div>Product</div>
+      <div>
+        my name:
+        <Input
+          value={strMyName}
+          placeholder={'input your name'}
+          handleChange={(value: string) => setMyName(value)}
+          maxLength={3}
+        />
+      </div>
+      {itemData && (
         <div>
-          Product {this.itemId}
-          <Input
-            value={strTest}
-            placeholder={'input here'}
-            handleChange={this.onChangeInputTest}
-            maxLength={2}
-          />
-          {model && (
-            <div>
-              <div>userId: {model.userId}</div>
-              <div>id: {model.id}</div>
-              <div>
-                title:{' '}
-                <Input
-                  value={model.title}
-                  handleChange={this.onChangeInputTitle}
-                />
-              </div>
-              <div>completed: {String(model.completed)}</div>
-            </div>
-          )}
-          <img src={'/logo192.png'} />
-          <img src={logo} />
+          <div>userId: {itemData.userId}</div>
+          <div>id: {itemData.id}</div>
+          <div>
+            title:{' '}
+            <Input value={itemData.title} handleChange={onChangeInputTitle} />
+          </div>
+          <div>completed: {String(itemData.completed)}</div>
         </div>
-      </PageLayout>
-    );
-  }
-}
+      )}
+    </PageLayout>
+  );
+};
+
+export default Product;

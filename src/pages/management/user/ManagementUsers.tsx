@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../components/layout/PageLayout';
-import { IPage } from '../../../interfaces/IPage';
+import { IPageProps } from '../../../interfaces/IPageProps';
+import { MenuId } from '../../../enums/MenuId';
 
-export default class ManagementUsers extends Component<IPage> {
+export default class ManagementUsers extends Component<IPageProps> {
   render() {
-    return <PageLayout {...this.props}>ManagementUsers</PageLayout>;
+    return (
+      <PageLayout
+        {...this.props}
+        menuId={MenuId.Management}
+        subMenuId={MenuId.ManagementUser}
+      >
+        ManagementUsers
+      </PageLayout>
+    );
   }
 }

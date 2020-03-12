@@ -1,65 +1,39 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Content from './content/Content';
-import { IPage } from '../../interfaces/IPage';
 import { MenuState } from '../../store/menu/types';
-import { Dispatch } from 'redux';
 import { changeMenuAction } from '../../store/menu/actions';
-import { connect } from 'react-redux';
-import { AppState } from '../../store';
+import { useDispatch } from 'react-redux';
+import { IHasMenu } from '../../interfaces/IHasMenu';
+import { RouteComponentProps } from 'react-router';
+import Page from './Page';
 
-interface IProps extends IPage {
-  changeMenu: (menuState: MenuState) => void;
-  menuState: MenuState;
-}
+type Props = RouteComponentProps & IHasMenu;
 
-class PageLayout extends Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
+const PageLayout: React.FC<Props> = props => {
+  const dispatch = useDispatch();
 
-    const { menuId, subMenuId, changeMenu } = this.props;
-
-    if (!changeMenu) return;
-
-    const menuState: MenuState = {
-      menuId: menuId,
-      subMenuId: subMenuId || null,
+  useEffect(() => {
+    const payload: MenuState = {
+      menuId: props.menuId,
+      subMenuId: props.subMenuId || null,
     };
 
-    changeMenu(menuState);
-  }
+    dispatch(changeMenuAction(payload));
+  }, [props.menuId, props.subMenuId, dispatch]);
 
-  render() {
-    const { children, menuState } = this.props;
+  const { children } = props;
 
-    return (
-      <div>
-        <Header
-          menuId={menuState.menuId || null}
-          subMenuId={menuState.subMenuId || null}
-        />
+  return (
+    <Page {...props}>
+      <Header />
+      <hr />
+      <Content>{children}</Content>
+      <hr />
+      <Footer />
+    </Page>
+  );
+};
 
-        <hr />
-
-        <Content>{children}</Content>
-
-        <hr />
-
-        <Footer />
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state: AppState) => ({
-  menuState: state.menu,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeMenu: (payload: MenuState) => {
-    return dispatch(changeMenuAction(payload));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PageLayout);
+export default PageLayout;

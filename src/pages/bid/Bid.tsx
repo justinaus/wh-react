@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PageLayout from '../../components/layout/PageLayout';
-import { IPage } from '../../interfaces/IPage';
+import { IPageProps } from '../../interfaces/IPageProps';
+import { MenuId } from '../../enums/MenuId';
 
-export default class Bid extends Component<IPage> {
-  render() {
-    return <PageLayout {...this.props}>Bid</PageLayout>;
-  }
-}
+const Bid = (props: IPageProps) => {
+  return (
+    <PageLayout {...props} menuId={MenuId.Bid}>
+      Bid
+    </PageLayout>
+  );
+};
+
+export default Bid;

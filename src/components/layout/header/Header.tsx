@@ -1,13 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
-import { IHasMenu } from '../../../interfaces/IHasMenu';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
-export default class Header extends Component<IHasMenu> {
-  render() {
-    return (
-      <header>
-        <NavBar {...this.props} />
-      </header>
-    );
-  }
-}
+const Header = () => {
+  const selectMenuState = (state: RootState) => {
+    return state.menu;
+  };
+
+  const menuState = useSelector(selectMenuState);
+
+  return (
+    <header>
+      <NavBar menuId={menuState.menuId} subMenuId={menuState.subMenuId} />
+    </header>
+  );
+};
+
+export default Header;

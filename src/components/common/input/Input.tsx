@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 interface IProps {
   value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    value: string,
+    e?: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   isDisabled?: boolean;
   placeholder?: string;
   maxLength?: number;
@@ -22,15 +25,23 @@ export default class Input extends Component<IProps> {
 
     const maxLengthResult = maxLength || this.MAX_LENGTH_DEFAULT;
 
-    const valueResult =
-      value.length > maxLengthResult ? value.slice(0, maxLengthResult) : value;
+    let valueResult: string;
+
+    if (value.length > maxLengthResult) {
+      valueResult = value.slice(0, maxLengthResult);
+      handleChange(valueResult);
+    } else {
+      valueResult = value;
+    }
 
     return (
       <div>
         <input
           type="text"
           value={valueResult}
-          onChange={handleChange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChange(e.currentTarget.value, e)
+          }
           placeholder={placeholder}
           disabled={isDisabled}
           maxLength={maxLengthResult}
