@@ -48,6 +48,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "miragejs": "^0.1.35",
     "prettier": "^1.19.1",
     "redux-devtools-extension": "^2.13.8"
   }
