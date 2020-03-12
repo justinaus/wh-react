@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers } from 'redux';
 // import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -10,17 +10,21 @@ const rootReducer = combineReducers({
   progressbar: progressbarReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof rootReducer>;
 
-export default function configureStore() {
-  // const middlewares = [thunkMiddleware];
-  // const middleWareEnhancer = applyMiddleware(...middlewares);
+const store = createStore(rootReducer, composeWithDevTools());
 
-  const store = createStore(
-    rootReducer,
-    composeWithDevTools()
-    // composeWithDevTools(middleWareEnhancer)
-  );
+export default store;
 
-  return store;
-}
+// export default function configureStore() {
+//   // const middlewares = [thunkMiddleware];
+//   // const middleWareEnhancer = applyMiddleware(...middlewares);
+
+//   const store = createStore(
+//     rootReducer,
+//     composeWithDevTools()
+//     // composeWithDevTools(middleWareEnhancer)
+//   );
+
+//   return store;
+// }

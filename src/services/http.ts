@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { store } from '..';
 import {
   showProgressAction,
   hideProgressAction,
 } from '../store/progressbar/actions';
+import store from '../store';
 
 const config: AxiosRequestConfig = {
   baseURL: '//jsonplaceholder.typicode.com',
@@ -28,7 +28,7 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   async function(response) {
-    const { config, data } = response;
+    // const { config, data } = response;
 
     store.dispatch(hideProgressAction());
 
@@ -37,7 +37,7 @@ http.interceptors.response.use(
     return response;
   },
   function(error) {
-    const { config } = error;
+    // const { config } = error;
 
     console.log('Error: ' + error.message);
 

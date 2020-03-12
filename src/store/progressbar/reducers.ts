@@ -1,9 +1,9 @@
-import { SHOW_PROGRESS, HIDE_PROGRESS } from './actions';
-import { ProgressbarState } from './types';
-
-interface IProgressAction {
-  type: string;
-}
+import {
+  ProgressbarState,
+  SHOW_PROGRESS,
+  HIDE_PROGRESS,
+  ProgressbarActionTypes,
+} from './types';
 
 const initialState: ProgressbarState = {
   isShow: false,
@@ -11,7 +11,7 @@ const initialState: ProgressbarState = {
 
 export function progressbarReducer(
   state = initialState,
-  action: IProgressAction
+  action: ProgressbarActionTypes
 ): ProgressbarState {
   switch (action.type) {
     case SHOW_PROGRESS: {

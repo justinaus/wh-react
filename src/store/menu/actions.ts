@@ -1,8 +1,6 @@
-import { MenuState } from './types';
+import { MenuState, CHANGE_MENU, MenuActionTypes } from './types';
 
-export const CHANGE_MENU = 'CHANGE_MENU';
-
-export function changeMenuAction(payload: MenuState) {
+export function changeMenuAction(payload: MenuState): MenuActionTypes {
   return {
     type: CHANGE_MENU,
     payload: payload,

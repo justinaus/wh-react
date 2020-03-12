@@ -1,13 +1,12 @@
-export const SHOW_PROGRESS = 'SHOW_PROGRESS';
-export const HIDE_PROGRESS = 'HIDE_PROGRESS';
+import { SHOW_PROGRESS, HIDE_PROGRESS, ProgressbarActionTypes } from './types';
 
-export function showProgressAction() {
+export function showProgressAction(): ProgressbarActionTypes {
   return {
     type: SHOW_PROGRESS,
   };
 }
 
-export function hideProgressAction() {
+export function hideProgressAction(): ProgressbarActionTypes {
   return {
     type: HIDE_PROGRESS,
   };

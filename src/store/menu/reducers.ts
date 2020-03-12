@@ -1,13 +1,5 @@
-import { MenuState } from './types';
+import { MenuState, MenuActionTypes, CHANGE_MENU } from './types';
 import { MenuId } from '../../enums/MenuId';
-import { CHANGE_MENU } from './actions';
-
-interface ChangeMenuAction {
-  type: typeof CHANGE_MENU;
-  payload: MenuState;
-}
-
-type MenuActionTypes = ChangeMenuAction;
 
 const initialState: MenuState = {
   menuId: MenuId.Management,
