@@ -6,7 +6,7 @@ import {
 import store from '../store';
 
 const config: AxiosRequestConfig = {
-  baseURL: '//jsonplaceholder.typicode.com',
+  // baseURL: '//jsonplaceholder.typicode.com',
   withCredentials: true,
   headers: { 'Content-Type': 'application/json', 'X-Custom-Header': 'foobar' },
 };

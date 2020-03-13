@@ -7,6 +7,12 @@ import store from './store';
 import { Provider } from 'react-redux';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { makeServer } from './server';
+
+// if (process.env.NODE_ENV === "development") {
+makeServer();
+// }
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
