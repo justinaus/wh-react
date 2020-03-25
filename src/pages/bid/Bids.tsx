@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PageLayout from '../../components/layout/PageLayout';
 import { IPageProps } from '../../interfaces/IPageProps';
 import { MenuId } from '../../enums/MenuId';
-import IPostModel from '../../interfaces/IPostModel';
-import { ApiPath } from '../../enums/ApiPath';
-import http from '../../services/http';
+import { useDispatch, useSelector } from 'react-redux';
+import { createGetBidsActionAsync } from '../../store/bid/actions';
+import { RootState } from '../../store';
 
 const Bids = (props: IPageProps) => {
-  const [datas, setDatas] = useState<IPostModel[]>([]);
+  const bidsState = useSelector((state: RootState) => state.bids);
+  const datas = bidsState.datas;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    http
-      .get(ApiPath.Bids)
-      .then(response => {
-        const result: IPostModel[] = response.data;
-        setDatas(result);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  };
+    console.log('get bids datas');
+    dispatch(createGetBidsActionAsync());
+  }, [dispatch]);
 
   const items = datas.map(item => {
     return (
