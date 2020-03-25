@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
 import { menuReducer } from './menu/reducers';
 import { progressbarReducer } from './progressbar/reducers';
 import { BidsReducer } from './bid/reducers';
+import mySaga from '../sagas';
 
 const rootReducer = combineReducers({
   menu: menuReducer,
@@ -14,9 +15,11 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const middlewares = [thunk];
-const middleWareEnhancer = applyMiddleware(...middlewares);
+const sagaMiddleware = createSagaMiddleware();
+const middleWareEnhancer = applyMiddleware(sagaMiddleware);
 
 const store = createStore(rootReducer, composeWithDevTools(middleWareEnhancer));
+
+sagaMiddleware.run(mySaga);
 
 export default store;

@@ -1,14 +1,19 @@
 import IPostModel from '../../interfaces/IPostModel';
 
+export const GET_BIDS = 'GET_BIDS';
 export const SET_BIDS = 'SET_BIDS';
 
 export interface BidsState {
   datas: IPostModel[];
 }
 
-interface SetBidsAction {
+export interface GetBidsAction {
+  type: typeof GET_BIDS;
+}
+
+export interface SetBidsAction {
   type: typeof SET_BIDS;
   payload: BidsState;
 }
 
-export type BidsActionTypes = SetBidsAction;
+export type BidsActionTypes = GetBidsAction | SetBidsAction;

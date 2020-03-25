@@ -3,8 +3,8 @@ import PageLayout from '../../components/layout/PageLayout';
 import { IPageProps } from '../../interfaces/IPageProps';
 import { MenuId } from '../../enums/MenuId';
 import { useDispatch, useSelector } from 'react-redux';
-import { createGetBidsActionAsync } from '../../store/bid/actions';
 import { RootState } from '../../store';
+import { createGetBidsAction } from '../../store/bid/actions';
 
 const Bids = (props: IPageProps) => {
   const bidsState = useSelector((state: RootState) => state.bids);
@@ -14,7 +14,7 @@ const Bids = (props: IPageProps) => {
 
   useEffect(() => {
     console.log('get bids datas');
-    dispatch(createGetBidsActionAsync());
+    dispatch(createGetBidsAction());
   }, [dispatch]);
 
   const items = datas.map(item => {
