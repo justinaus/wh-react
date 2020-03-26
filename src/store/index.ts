@@ -5,11 +5,14 @@ import createSagaMiddleware from 'redux-saga';
 import { menuReducer } from './menu/reducers';
 import { progressbarReducer } from './progressbar/reducers';
 import { BidsReducer } from './bid/reducers';
-import mySaga from '../sagas';
+import { ProductsReducer } from './product/reducers';
+
+import rootSaga from '../sagas';
 
 const rootReducer = combineReducers({
   menu: menuReducer,
   progressbar: progressbarReducer,
+  products: ProductsReducer,
   bids: BidsReducer,
 });
 
@@ -20,6 +23,6 @@ const middleWareEnhancer = applyMiddleware(sagaMiddleware);
 
 const store = createStore(rootReducer, composeWithDevTools(middleWareEnhancer));
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(rootSaga);
 
 export default store;

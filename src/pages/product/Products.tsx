@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PageLayout from '../../components/layout/PageLayout';
 import { IPageProps } from '../../interfaces/IPageProps';
-import ITodoModel from '../../interfaces/ITodoModel';
-import { ApiPath } from '../../enums/ApiPath';
-import http from '../../services/http';
 import { Link } from 'react-router-dom';
 import { RouterPath } from '../../enums/RouterPath';
 import { MenuId } from '../../enums/MenuId';
+import { RootState } from '../../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { createGetProductsAction } from '../../store/product/actions';
 
 const Products = (props: IPageProps) => {
-  const [datas, setDatas] = useState<ITodoModel[]>([]);
+  const productsState = useSelector((state: RootState) => state.products);
+  const datas = productsState.datas;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    http
-      .get(ApiPath.Products)
-      .then(response => {
-        const result: ITodoModel[] = response.data;
-        setDatas(result);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  };
+    console.log('get products datas');
+    dispatch(createGetProductsAction());
+  }, [dispatch]);
 
   const items = datas.map(item => {
     return (
