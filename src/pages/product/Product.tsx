@@ -6,6 +6,7 @@ import http from '../../services/http';
 import ITodoModel from '../../interfaces/ITodoModel';
 import Input from '../../components/common/input/Input';
 import { MenuId } from '../../enums/MenuId';
+import Axios, { CancelTokenSource } from 'axios';
 
 const Product = (props: IPageProps) => {
   const [itemData, setData] = useState<ITodoModel | null>(null);
@@ -18,16 +19,23 @@ const Product = (props: IPageProps) => {
   useEffect(() => {
     if (!itemId) return;
 
-    getData(itemId);
+    const CancelToken = Axios.CancelToken;
+    const source = CancelToken.source();
+
+    getData(itemId, source);
+    return () => {
+      source.cancel('Operation canceled by the user.');
+    };
   }, [itemId]);
 
-  const getData = (itemId: string) => {
+  const getData = (itemId: string, source: CancelTokenSource) => {
     const path = `${ApiPath.Products}/${itemId}`;
 
     http
-      .get(path)
+      .get(path, { cancelToken: source.token })
       .then(response => {
         const result: ITodoModel = response.data;
+        console.log('api complete');
         setData(result);
       })
       .catch(error => {
