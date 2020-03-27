@@ -1,6 +1,6 @@
 import { Server, Model } from 'miragejs';
 
-const DELAY = 1000;
+const DELAY = 4000;
 
 export function makeServer({ environment = 'development' } = {}) {
   let server = new Server({
@@ -33,9 +33,13 @@ export function makeServer({ environment = 'development' } = {}) {
     routes() {
       // this.namespace = 'api';
 
-      this.get('/users', schema => {
-        return schema.users.all();
-      });
+      this.get(
+        '/users',
+        schema => {
+          return schema.users.all();
+        },
+        { timing: DELAY }
+      );
 
       this.get(
         '/todos',
@@ -48,13 +52,17 @@ export function makeServer({ environment = 'development' } = {}) {
         { timing: DELAY }
       );
 
-      this.get('/todos/:id', (schema, request) => {
-        const id = request.params.id;
+      this.get(
+        '/todos/:id',
+        (schema, request) => {
+          const id = request.params.id;
 
-        const result = schema.todos.find(id);
+          const result = schema.todos.find(id);
 
-        return result.attrs;
-      });
+          return result.attrs;
+        },
+        { timing: DELAY }
+      );
 
       this.get(
         '/posts',
