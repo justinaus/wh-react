@@ -1,21 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageLayout from '../../components/layout/PageLayout';
 import { IPageProps } from '../../interfaces/IPageProps';
 import { MenuId } from '../../enums/MenuId';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { createGetBidsAction } from '../../store/bid/actions';
+import useFetch from '../../hooks/useFetch';
 
 const Bids = (props: IPageProps) => {
   const bidsState = useSelector((state: RootState) => state.bids);
   const datas = bidsState.datas;
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log('get bids datas');
-    dispatch(createGetBidsAction());
-  }, [dispatch]);
+  useFetch(createGetBidsAction);
 
   const items = datas.map(item => {
     return (

@@ -1,4 +1,5 @@
 import ITodoModel from '../../interfaces/ITodoModel';
+import { IAxiosCancelable } from '../../interfaces/IAxiosCancelable';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
@@ -7,7 +8,7 @@ export interface ProductsState {
   datas: ITodoModel[];
 }
 
-export interface GetProductsAction {
+export interface GetProductsAction extends IAxiosCancelable {
   type: typeof GET_PRODUCTS;
 }
 

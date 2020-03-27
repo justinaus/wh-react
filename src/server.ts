@@ -1,6 +1,6 @@
 import { Server, Model } from 'miragejs';
 
-const DELAY = 4000;
+const DELAY = 2000;
 
 export function makeServer({ environment = 'development' } = {}) {
   let server = new Server({

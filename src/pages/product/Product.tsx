@@ -35,7 +35,6 @@ const Product = (props: IPageProps) => {
       .get(path, { cancelToken: source.token })
       .then(response => {
         const result: ITodoModel = response.data;
-        console.log('api complete');
         setData(result);
       })
       .catch(error => {

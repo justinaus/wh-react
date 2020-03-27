@@ -1,4 +1,5 @@
 import IPostModel from '../../interfaces/IPostModel';
+import { IAxiosCancelable } from '../../interfaces/IAxiosCancelable';
 
 export const GET_BIDS = 'GET_BIDS';
 export const SET_BIDS = 'SET_BIDS';
@@ -7,7 +8,7 @@ export interface BidsState {
   datas: IPostModel[];
 }
 
-export interface GetBidsAction {
+export interface GetBidsAction extends IAxiosCancelable {
   type: typeof GET_BIDS;
 }
 

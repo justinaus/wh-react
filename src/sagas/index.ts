@@ -10,7 +10,7 @@ import {
 } from '../store/bid/types';
 import http from '../services/http';
 import { ApiPath } from '../enums/ApiPath';
-import { AxiosError } from 'axios';
+import { AxiosError, CancelTokenSource, Cancel } from 'axios';
 import IPostModel from '../interfaces/IPostModel';
 import {
   GET_PRODUCTS,
@@ -21,14 +21,16 @@ import {
 } from '../store/product/types';
 import ITodoModel from '../interfaces/ITodoModel';
 
-const getData = async (path: string) => {
+const getData = async (path: string, cancelTokenSource: CancelTokenSource) => {
   const result = await http
-    .get(path)
+    .get(path, { cancelToken: cancelTokenSource.token })
     .then(response => {
       return response.data;
     })
-    .catch((error: AxiosError) => {
-      return error;
+    .catch((error: AxiosError | Cancel) => {
+      // 그냥 null 리턴하겠다.
+      return null;
+      // return error;
     });
 
   return result;
@@ -37,7 +39,9 @@ const getData = async (path: string) => {
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* getBids(action: GetBidsAction) {
   try {
-    const result = yield getData(ApiPath.Bids);
+    const result = yield getData(ApiPath.Bids, action.cancelTokenSource);
+
+    if (!result) return;
 
     const state: BidsState = {
       datas: result as IPostModel[],
@@ -56,7 +60,15 @@ function* getBids(action: GetBidsAction) {
 
 function* getProducts(action: GetProductsAction) {
   try {
-    const result = yield getData(ApiPath.Products);
+    const result = yield getData(ApiPath.Products, action.cancelTokenSource);
+
+    if (!result) return;
+
+    // interface type check issue.
+    // https://github.com/Microsoft/TypeScript/issues/19120
+    // if ((result as AxiosError).isAxiosError) {
+    //   return;
+    // }
 
     const state: ProductsState = {
       datas: result as ITodoModel[],
