@@ -42,7 +42,7 @@ export default class NavItem extends Component<IProps> {
 
     return (
       <li>
-        <NavLink className={className} to={itemData.link}>
+        <NavLink className={className} to={itemData.link} data-cy="link">
           {itemData.text}
         </NavLink>
         {itemData.arrSub && this.subItems(itemData.arrSub)}
