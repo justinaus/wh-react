@@ -6,8 +6,6 @@ import useOnlineStatus from '../../../hooks/useOnlineStatus';
 
 import styles from './ManagementUsers.module.css';
 
-import './test.scss';
-
 const onClickBox = (e: React.MouseEvent) => {
   const box = e.target as HTMLElement;
 
@@ -29,7 +27,6 @@ const ManagementUsers = (props: IPageProps) => {
       <div>isOnline: {String(isOnline)}</div>
       <div className={styles.box}></div>
       <div className={styles.box2} onClick={onClickBox}></div>
-      <div className="test"></div>
     </PageLayout>
   );
 };
