@@ -27,3 +27,14 @@
   transition: all 1s;
   margin-left: 10px;
 }
+
+.box3 {
+  composes: primaryBgColor from './color.css';
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  transition: all 1s;
+  margin-left: 10px;
+}

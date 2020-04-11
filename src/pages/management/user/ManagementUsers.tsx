@@ -27,6 +27,7 @@ const ManagementUsers = (props: IPageProps) => {
       <div>isOnline: {String(isOnline)}</div>
       <div className={styles.box}></div>
       <div className={styles.box2} onClick={onClickBox}></div>
+      <div className={styles.box3}></div>
     </PageLayout>
   );
 };
