@@ -35,8 +35,7 @@ export default class NavItem extends Component<IProps> {
   render() {
     const { itemData, isSelected } = this.props;
 
-    const className = cx({
-      a: true,
+    const className = cx('a', {
       selected: isSelected,
     });
 
