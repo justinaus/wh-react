@@ -1,3 +1,5 @@
+@import '../../../assets/css/color.css';
+
 .box {
   border-style: solid;
   border-width: 1px;
@@ -29,7 +31,6 @@
 }
 
 .box3 {
-  composes: primaryBgColor from './color.css';
   border-style: solid;
   border-width: 1px;
   display: block;
@@ -37,4 +38,5 @@
   height: 100px;
   transition: all 1s;
   margin-left: 10px;
+  background-color: var(--color-black);
 }
