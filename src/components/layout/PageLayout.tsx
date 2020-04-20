@@ -28,9 +28,7 @@ const PageLayout: React.FC<Props> = props => {
   return (
     <Page {...props}>
       <Header />
-      <hr />
       <Content>{children}</Content>
-      <hr />
       <Footer />
     </Page>
   );
