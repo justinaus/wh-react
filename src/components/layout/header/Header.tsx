@@ -19,6 +19,9 @@ const Header = () => {
         <img className={styles.img} src={logo} />
       </NavLink>
       <NavBar menuId={menuState.menuId} />
+      <a className={styles.rightButton} href="http://github.com">
+        Github
+      </a>
     </header>
   );
 };
