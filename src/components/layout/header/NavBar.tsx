@@ -5,22 +5,11 @@ import { IHasMenu } from '../../../interfaces/IHasMenu';
 
 type Props = IHasMenu;
 
-// type PropsFromRedux = ConnectedProps<typeof connector>
-
-// type Props = PropsFromRedux & {
-//   backgroundColor: string
-// }
-
-const NavBar = ({ menuId, subMenuId }: Props) => {
+const NavBar = ({ menuId }: Props) => {
   const getNavItems = () => {
     return menuData.map(item => {
       return (
-        <NavItem
-          key={item.id}
-          itemData={item}
-          isSelected={item.id === menuId}
-          subSelectedId={subMenuId}
-        >
+        <NavItem key={item.id} itemData={item} isSelected={item.id === menuId}>
           {item.text}
         </NavItem>
       );

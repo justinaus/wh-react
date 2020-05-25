@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <header className={styles.wrapper}>
-      <NavBar menuId={menuState.menuId} subMenuId={menuState.subMenuId} />
+      <NavBar menuId={menuState.menuId} />
     </header>
   );
 };
