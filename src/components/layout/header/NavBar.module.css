@@ -1,0 +1,7 @@
+.wrapper {
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  -webkit-align-items: center;
+  align-items: center;
+}

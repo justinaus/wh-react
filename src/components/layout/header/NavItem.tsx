@@ -20,11 +20,9 @@ export default class NavItem extends Component<IProps> {
     });
 
     return (
-      <li className={styles.li_inline}>
-        <NavLink className={className} to={itemData.link} data-cy="link">
-          {itemData.text}
-        </NavLink>
-      </li>
+      <NavLink className={className} to={itemData.link} data-cy="link">
+        {itemData.text}
+      </NavLink>
     );
   }
 }

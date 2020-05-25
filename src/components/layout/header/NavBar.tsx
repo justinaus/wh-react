@@ -3,6 +3,8 @@ import { menuData } from '../../../constants/menuData';
 import NavItem from './NavItem';
 import { IHasMenu } from '../../../interfaces/IHasMenu';
 
+import styles from './NavBar.module.css';
+
 type Props = IHasMenu;
 
 const NavBar = ({ menuId }: Props) => {
@@ -18,7 +20,7 @@ const NavBar = ({ menuId }: Props) => {
 
   const navItems = getNavItems();
 
-  return <ul>{navItems}</ul>;
+  return <nav className={styles.wrapper}>{navItems}</nav>;
 };
 
 export default NavBar;
