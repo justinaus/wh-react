@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <div>
       <Router>
-        <Suspense fallback={<div>Suspense fallback</div>}>
+        <Suspense fallback={<div></div>}>
           <Switch>
             <Route path={RouterPath.Products} component={Products} />
             <Route path={`${RouterPath.Product}/:id`} component={Product} />
